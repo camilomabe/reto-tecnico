@@ -1,0 +1,29 @@
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('net.serenity-bdd:serenity-gradle-plugin:2.4.34')
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    implementation 'net.serenity-bdd:serenity-junit:3.6.7'//org.junit.runner.RunWith
+    testImplementation 'net.serenity-bdd:serenity-cucumber:3.6.7' //GivenWhenThen actors
+    implementation 'net.serenity-bdd:serenity-screenplay:3.6.0' //Tasks
+    implementation 'net.serenity-bdd:serenity-screenplay-webdriver:3.6.0'//Actions, Click,
+}
+
+test {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
